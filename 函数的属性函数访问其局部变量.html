@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		i = 100;
+		function outer(){
+			var i = 10;
+			function inner1(){
+				alert(i);
+			}
+			inner1(); //在函数内部调用，因为函数内部有i，所以是访问外层函数里面的i
+			this.inner2 = function(){
+				console.log(i);
+			}
+			//inner2(); //这种调用是错误的，必须是 this.inner2();
+			this.inner2();
+		}
+		//new outer().inner1(); //inner1只是申明在outer内部的函数，不是他的属性，所以只能在它的内部访问。
+		new outer().inner2(); //这个语句 new outer 会执行outer里面的代码，执行inner1的时候访问的是内部变量i。 执行this.inner2()由于闭包的影响还是访问内部的i。本处代码本身执行一次 inner2()也是闭包访问内部i。
+	</script>
+</body>
+</html>

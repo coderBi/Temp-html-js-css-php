@@ -1,0 +1,19 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>test</title>
+<script>
+function change(){
+	console.log(document.getElementById("div"));
+	document.getElementById("id").setAttribute("value",true);
+	//这里得到的是string类型的，所以一定程度上boolean在js里面只存在与自定义的变量的操作中间
+	console.log(typeof document.getElementById("id").getAttribute("value"));
+}
+</script>
+</head>
+<body>
+<div id="id">sss</div>
+<input type="button" onclick="change()" value="change"/>
+</body>
+</html>
+

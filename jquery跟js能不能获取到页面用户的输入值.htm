@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试对于onblur事件，jquery跟js能不能获取到页面用户的输入值</title>
+	
+	<script src="jquery-1.12.3.min.js">
+		//通过这个例子可以发现，通过原生的js语句可以或得到文本框中的输入的值，而通过jQuery不能获取到
+	</script>
+</head>
+<body>
+	<form action="" method="get">
+		用户名：<input type="text" id='username'  onblur='checkName()'><br>
+		密码：<input type="password" id='password' onblur='checkPassword()'>
+	</form>
+	<script>
+		function checkName(){
+			alert(document.getElementById("username").value);
+			alert($("#username").val());  //没有办法通过attr得到，只能通过val()得到
+			console.log(typeof $("#username").val());
+		}
+		function checkPassword(){
+			alert($("#username").attr("value"));
+		}
+	</script>
+</body>
+</html>

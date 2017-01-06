@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>尝试直接调用json里面的函数</title>
+	
+	<script src="jquery-1.12.3.min.js"></script>
+	<script language="JavaScript">
+		var json = {
+			1 : function(){alert("function1");},
+			2 : function(){alert("function2");},
+		}
+		$(function(){
+			for(var item in json){
+				json[item](); //这里可以正常输出就说明可以这样使用
+			}
+		};);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

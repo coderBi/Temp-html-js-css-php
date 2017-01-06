@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js跑马灯</title>
+	<script>
+		var direction = "left";
+		function scroll(){
+			console.log(direction);
+			var span = document.getElementById("text");
+			var padding = Number(span.getAttribute("padding-right"));console.log(padding);
+			if(padding >=1300 - 420){
+				padding -= 10; direction = "right";
+			}
+			else if(direction == "left"){
+				padding += 10;
+			}
+			else if(padding <= 0){
+				padding += 10; direction = "left";
+			} else {
+				padding -= 10;
+			}
+			span.setAttribute("padding-right",padding);
+			span.setAttribute('style',"margin-right:"+padding+"px;"+"margin-left:auto;"+"display:block;"+"width:420px;")
+			setTimeout("scroll()",50);
+		}
+	</script>
+</head>
+<body onload="scroll()">
+	<div id='wrapper'style="background-color:green;height:500px;width:1300px;">
+		<span id='text' padding-right="0" style="display:inline-block">这是一个字符串，位于一个div内部，要进行左右往复运动</span>
+	</div>
+</body>
+</html>

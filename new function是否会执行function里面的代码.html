@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function func(){
+			alert("func");
+		}
+
+		//通过下面的两个语句的测试，说明new 操作， 会执行function里面的独立语句。也就是说function本身算是自己的构造
+		new func();
+		new func;
+	</script>
+</body>
+</html>

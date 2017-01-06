@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js循环</title>
+</head>
+<body>
+	<script>
+		var arr = [1,[2,3]];
+		//常规数组循环
+		for(var i = 0; i < arr.length; ++i){
+			alert(arr[i]);
+		}
+		//for in
+		for(var key in arr){
+			console.log("key: " + key + " value: " + arr[key]);
+		}
+	</script>
+</body>
+</html>

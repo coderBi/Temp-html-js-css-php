@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+		js里面没有代码块的作用域，只有函数跟全局的区分。
+		所以下面不在函数里面的变量无论是否用var修饰都是全局的。
+		下面的两个for里面的 i 是同一个i，他们都是全局的。
+		申明的funs[i]，函数里面没有申明局部的i， 那么这个i就是调用全局的i
+		经过了两个for，i最终成了 10. 所以三个funs调用都是打印apples[10]。都是undefined
+	*/
+		 var apples=["apple1","apple2","apple3"];
+			for(var i=0,funs=[];i<3;i++){
+			funs[i]=function(){console.log(i);console.log(apples[i]);}
+			}
+			for(var i = 0; i < 10; ++i){}
+			funs[0]();
+			funs[1]();
+			funs[2](); 
+	</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<script>
+	//获取并打印当前选中的文件数量
+	function func(){
+		var filesNode = document.getElementsByName('files')[0];
+		alert('count: '+(filesNode.files.length)); ///如果要限制文件数量，这里判断 if count > max 直接 return false
+		console.log(filesNode.files);
+	}
+</script>
+<!--input标签的multiple属性可以支持多文件上传。-->
+<input type='file' name='files' multiple='multiple'/>
+<input type='button' value='getFilesCount' onclick='func()'/>

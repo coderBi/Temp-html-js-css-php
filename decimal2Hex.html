@@ -1,0 +1,13 @@
+<script>
+/**
+*10进制转16进制
+*@param string|int decimal 10进制数字或者字符串
+*@return string 16进制字符串
+*/
+function decimal2Hex(decimal){
+	if(typeof(decimal) != 'number')
+		///之所以这里用一个parseInt，因为传入可能是一个非法的不是10进制的字符串
+		decimal = parseInt(decimal,10);
+	return decimal.toString(16).toUpperCase();
+}
+</script>

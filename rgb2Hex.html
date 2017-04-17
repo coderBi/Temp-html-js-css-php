@@ -1,0 +1,52 @@
+<script>
+/**
+*rgb字符串转换成十六进制的字符串，字符串前面带有 #
+*@param string rgb 待转换的rgb字符串
+*/
+function rgb2Hex(rgb){
+	//先去掉空格
+	rgb = rgb.split(',');
+	for(var index in rgb){
+		rgb[index] =  rgb[index].replace(' ','');
+	}
+	rgb.join(',');
+
+	//正则获取红绿蓝颜色的值
+	var regex = /^(\s*)?(rgb|RGB)\((\w+),(\w+),(\w+)\)(\s*)?$/;
+	if(!regex.test(rgb))
+		//这里也可以抛异常
+		return rgb;
+	var result = regex.exec(rgb);
+	var red = fillZeroBefore(decimal2Hex(result[3]),2);
+	var green = fillZeroBefore(decimal2Hex(result[4]),2);
+	var blue = fillZeroBefore(decimal2Hex(result[5]),2);
+	return "#"+ red + green + blue;
+}
+
+/**
+*10进制转16进制
+*@param string|int decimal 10进制数字或者字符串
+*@return string 16进制字符串
+*/
+function decimal2Hex(decimal){
+	if(typeof(decimal) != 'number')
+		///之所以这里用一个parseInt，因为传入可能是一个非法的不是10进制的字符串
+		decimal = parseInt(decimal,10);
+	return decimal.toString(16).toUpperCase();
+}
+
+/**
+*填充一个字符串到指定长度，不到这个长度的部分前面填充0
+*@param str string 待填充的字符串
+*@param	length int 要填充到的长度
+*/
+function fillZeroBefore(str,length){
+	if(typeof(str) != 'string')
+		str += "";
+	var toReturn = "";
+	for(var i = 0; i < length - str.length; ++i)
+		toReturn += "0";
+	toReturn += str;
+	return toReturn;
+}
+</script>

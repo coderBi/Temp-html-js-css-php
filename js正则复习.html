@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 正则复习</title>
+</head>
+<body>
+	<script>
+		////////////////////////////pregex.test  测试是否包含指定的字符串////////////////////////////
+		//RegExp()第一个参数指定模式，第二参数指定属性：g i m(多行匹配).第二个参数中的属性也可以放到第一个参数中: /^$/gim
+		var regex = new RegExp();
+		var str = "www.baidu.com/haha,youku.com";
+		var pattern = '(w{3}\\.)?(\\w+\\.\\w+)';
+		///////regex.compile第一个参数指定重置的模式，第二个参数执行重置的属性:gi
+		regex.compile(pattern,'g');
+
+		document.write(regex.test(str)); 
+		document.write('<br>');
+		/////////////pregex.exec  返回第一个匹配的结果，如果没有找到匹配返回null/////////////////////
+		//exec函数返回一个数组，脚标为0表示匹配到的结果，脚标为1表示子查询1...
+		//note:在/g模式下exec每次执行会移动内部的指针，进行下一次的匹配的。非/g模式每次返回的结果一样
+		/////通过测试 /g 模式下exec会返回最后一个匹配 而非/g模式返回第一个
+		console.log(regex.exec(str));
+		document.write(regex.exec(str)); 
+		document.write('<br>');
+
+		///////note: 一般来说 test exec 只用于返回一个结果。子查询，全局扫描更适合的是string.match()//////
+		
+		///////////////////////////string.match ///////////////
+		//注意，这里的\w不用写成 \\w因为这里是字面量对象
+		pattern = /(w{3}\.)?(\w+\.\w+)/g;
+		///////如果有/g  match 返回匹配的结果，没有子查询结果。如果没有 /g 执行情况与exec一样
+		console.log(str.match(pattern));
+		document.write(str.match(pattern));
+		document.write('<br>');
+
+		//////////string.search 总是从开始查询并且只能返回第一个匹配的位置，不支持/g ///////////////
+		//返回第一个找到匹配的位置，没有找到返回 -1
+		document.write(str.search(pattern));
+		document.write('<br>');
+
+		//////////////////////多次 match 获取子查询思路 ////////////////////////
+		pattern = "(w{3}\\.)?(\\w+\\.\\w+)";
+		var regex = new RegExp(pattern,'g');
+		//获取全局匹配
+		var result = str.match(regex);
+		console.log(result);
+		//获取每一个匹配的子查询
+		//去掉 /g 属性
+		regex.compile(pattern);
+		for(var index in result){
+			document.write(result[index].match(regex));
+			document.write('<br>');
+		}
+		
+		///////////string.replace(模式[/g],替换的内容字符串或者是获取字符串的函数) /////////////////
+		pattern = "(w{3}\\.)?(\\w+\\.\\w+)";
+		var regex = new RegExp(pattern,'g');
+		//function函数的参数依次是index 0 1 2 ... 子查询
+		document.write(str.replace(regex,function(match){
+			//匹配内容转大写
+			return match.toUpperCase();
+		}));
+		document.write('<br>');
+		// $2 $1直接指代子查询结果
+		document.write(str.replace(regex,'$2$1'));
+		document.write('<br>');
+
+		///////////string.split('',maxLenth) 与Array.join('')/////////////////
+		///split 函数第二个参数指定返回的数组的最大长度，如果不指定会切割整个字符串
+		//note: 如果切割的字符串指定的是 “” 会进行每一个字符的切割
+		var result = str.split('');
+		console.log(result);
+		console.log(result.join(''));
+		///正则表达式切割。
+		//note：替换匹配的正则中不应该出现 () 否则子查询到的结果也会出现在split结果数组中
+		document.write(str.split(/(w{3}\.)?(\w+\.\w+)/));
+		document.write('<br>');
+		///由于没有办法出现 () 只能分两次切割
+		result = str.split(/w{3}\.\w+\.\w+/)
+		document.write(result);
+		document.write('<br>');
+		//第二次切割  尽管多次切割可以得到结果  但是个人认为这是js正则的一个问题
+		for(item in result){
+			document.write(item+'<br>');
+			document.write(result[item].split(/\w+\.\w+/));
+			console.log(result[item].split(/\w+\.\w+/));
+			document.write('<hr>');
+		}
+	</script>
+</body>
+</html>

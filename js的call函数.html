@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js call</title>
+</head>
+<body>
+	<script>
+		function outer(a){
+			this.a = a;
+		}
+
+		outer.prototype.func = function(){
+			alert(this.a);
+		}
+		//call函数调用格式  func.call(对象，参数1，参数2...) 其实类似与反射
+		outer.prototype.func.call(new outer('你好'));
+	</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>offset使用  获取或者设置对象相对于文档的偏移</title>
+	<script src="jquery-1.12.3.js"></script>
+</head>
+<body>
+	<div id='div' style="background-color:red;width:500px;height:500px;"></div>
+	<input id='get' type='button' value='获取offset'/><input id='set' type='button' value='设置offset'/>
+	<script>
+	$('#get').click(function(){
+		//获取的结构中是一个只要一个left和top的属性的对象
+		var offset = $('#div').offset();
+		alert('left:'+offset.left+"  top:"+offset.top);
+	});
+	$('#set').click(function(){
+		//获取的结构中是一个只要一个left和top的属性的对象
+		var offset = $('#div').offset();
+		//提供一个对象，只要这个对象中有left跟top属性  就可以用来设置offset
+		$('#div').offset({'left':100,"top":100})
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试随着滚动条的移动动态加载图片的js效果</title>
+	<script src="jquery-1.12.3.js"></script>
+	<script src="jquery.scrollLoading.js"></script>
+</head>
+<body>
+	<img src="1.jpg" class='scroll' data-url='2.png' style="width:500px;height:500px;display:block" alt="图片1"/>
+	<img src="1.jpg" class='scroll' data-url='2.png' style="width:500px;height:500px;display:block" alt="图片1"/>
+	<img src="1.jpg" class='scroll' data-url='2.png' style="width:500px;height:500px;display:block" alt="图片1"/>
+	<img src="1.jpg" class='scroll' data-url='2.png' style="width:500px;height:500px;display:block" alt="图片1"/>
+	<img src="1.jpg" class='scroll' data-url='2.png' style="width:500px;height:500px;display:block" alt="图片1"/>
+	<script>
+		$(".scroll").scrollLoading();
+	</script>
+</body>
+</html>

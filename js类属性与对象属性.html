@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>直接执行function内部方法</title>
+	<script>
+	function outer(){
+		alert('outer');
+	}
+	outer.inner = function(data){
+		alert(data);
+	};
+	
+	outer.prototype.pro = function(){
+		alert('from prototype');
+	}
+	
+	//自己的类属性，不能用用对象访问，只能用类访问
+	outer.inner('你好');
+	//自己的类属性，不能用对象访问
+	//(new outer).inner('什么鬼')
+
+	//原型的类属性，可以使用当前类对象访问
+	(new outer).pro();
+	//原型的类属性，用原型类访问
+	outer.prototype.pro();
+	//原型的类属性，不可以使用当前的类名访问
+	//outer.pro();
+	
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

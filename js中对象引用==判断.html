@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象==比较</title>
+</head>
+<body>
+	<script>
+		function MyObj(){
+			this.a = 1;
+			this.b = "hello";
+		}
+		var obj = new MyObj();
+		var ref = obj;
+		//打印true  我个人的理解是ref存的是obj的一个引用  也就是和php类似 他们内部的一个"标号"是一样的 对于普通变量这个"标号"就是值 对于对象这个"标号"就是对象id
+		alert(ref == obj);
+	</script>
+</body>
+</html>

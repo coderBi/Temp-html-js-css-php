@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js中无static关键字</title>
+</head>
+<body>
+	<script>
+		function test(){
+			//static var x = 1; //错
+			//var static x = 1; //错
+			//static x = 1; //错
+			static = 1; //通过
+		}
+	</script>
+</body>
+</html>

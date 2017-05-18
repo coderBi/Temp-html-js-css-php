@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 判断数组是否有某个key  与判断对象是否有某个属性</title>
+</head>
+<body>
+	<script>
+		var arr = []
+		arr['key'] = undefined;
+		var obj = new function(){
+			this.key = undefined;
+		}
+		//判断数组
+		alert('key' in arr);
+		alert('key11' in arr);
+		//判断对象
+		alert(obj.hasOwnProperty('key'));
+		alert(obj.hasOwnProperty('key11'));
+	</script>
+</body>
+</html>	

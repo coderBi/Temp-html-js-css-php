@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js数组也是对象，统计元素个数不能简单的用length</title>
+</head>
+<body>
+	<script>
+		var arr = [1,2,3];
+		//数组其实也是对象
+		console.log(typeof arr);
+		arr['index'] = 'value';
+		//length 这个属性只能获取到 0 1 2 这样的脚标  所以这里的length是 3
+		console.log(arr.length);
+
+		//获取真正的length
+		var length = 0;
+		for(tmp in arr){
+			length++;
+		}
+		/// 可以获取到真正的长度 4
+		console.log(length);
+
+		//length属性  可以正确的获取字符串类型的长度
+		var str = "hello 110";
+		console.log(typeof str);
+		//能够获取到正确的值 9
+		console.log(str.length);
+	</script>
+</body>
+</html>	

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 方向键与pgup pgdown 等码值</title>
+</head>
+<body>
+	
+</body>
+</html>	
+<script>
+	//通过测试pgup是 33 pgdown是34  左上右下键依次是 37 38 39 40  space键是32
+	window.onkeyup = function(event){
+		event = event || window.event;
+		alert(event.keyCode);
+	}
+</script>

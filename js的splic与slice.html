@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js的splic与slice</title>
+</head>
+<body>
+	<script>
+		var arr = [1,2,3];
+		arr['key1'] = 'value1';
+		arr['key2']  = 'value2';
+		console.log(arr);
+		//跟php一样  splice删除会改变脚标
+		arr.splice(0,1);
+		console.log(arr);
+		//截取 第1个参数是起始index  第2个参数是结束index如果没有传入就是取后面的所有
+		var newarr = arr.slice(2);
+		console.log(newarr);
+
+		//note：无论是slice还是 splice 通过测试对于key是字符串的元素都会进行处理
+		alert(arr['key1']); //value1
+		alert(newarr['key1']);  //undefined
+	</script>
+</body>
+</html>

@@ -20,6 +20,8 @@
 		//提供一个对象，只要这个对象中有left跟top属性  就可以用来设置offset
 		$('#div').offset({'left':100,"top":100})
 	});
+	//下面的伪元素就是没有left  top的属性
+	alert($('#set:after').offset());
 	</script>
 </body>
 </html>

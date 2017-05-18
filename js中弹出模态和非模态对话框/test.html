@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试弹出模态和非模态对话框</title>
+    <!--设置base=self 这样弹出就不会重开一个标签页-->
+    <base target="_self">
+</head>
+<body>
+<input type="button" value="模态" onclick="showModal();"><br>
+<input type="button" value="非模态" onclick="showModeless();">
+</body>
+</html>
+<script>
+    function showModal() {
+        //showModalDialog 第一个参数是url 第二个参数是传递的变量，可以通过dialogArguments进行获取 第三个参数是弹出的对话框的属性配置 多个属性配置之间用分号隔开
+        //第三个参数的 dialogLeft dialogTop是相对于屏幕的  help：是否显示帮助按钮，默认是yes  status：是否显示状态栏，默认是yes  scroll：是否显示滚动条，默认是yes   resizable：是否可以拖动改变大写，默认是yes  edge：边框的样式，默认是raised，还可以是sunken
+        showModalDialog('./dialog.html','','dialogHeight=200px;dialogWidth=200px;resizable=no;scroll=no;status=no;help=no;edge=sunken;');
+    }
+    function showModeless() {
+        //实际使用发现ff并没有showModelessDialog函数  ie中存在   ie中对话框默认是居中的  但是火狐中默认是是在左上角显示的
+        //showModelessDialog('./dialog.html','','dialogHeight=200px;dialogWidth=200px;resizable=no;scroll=no;status=no;help=no;edge=sunken;');
+
+        var left = (screen.availWidth - 200) / 2;
+        var top = (screen.availHeight - 200) / 2;
+        //可以使用open函数打开一个非模态的对页面
+        open ('./dialog.html', 'newwindow', 'height=200, width=200, top='+top+',left='+left+', toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')
+    }
+</script>

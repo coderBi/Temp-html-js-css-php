@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>settimeout执行对象的成员函数的方法，需要将对象添加到window下面，因为里面执行的代码体中的this指代的是window</title>
+</head>
+<body>
+<input type="button" onclick="start();" value="开始计时"><br>
+<input type="button" onclick="stop();" value="结束计时"><br>
+<input type="button" id="start" onclick="" value="对象计时方法开始"><br>
+<input type="button" id="stop" onclick="" value="对象结束计时">
+<div id="time">0</div>
+<div id="timeobj">0</div>
+</body>
+</html>
+<script>
+    var time = 0;
+    var timeoutid = -1;
+    function start() {
+        console.log(time);
+        time += 10;
+        timeoutid = setTimeout('start();',500);
+        document.getElementById('time').innerHTML = time;
+    }
+    function stop() {
+        clearTimeout(timeoutid);
+    }
+    
+    var obj = new (function MyObj() {
+        this.time = 0;
+        this.timeoutid = -1;
+        this.start = function () {
+            window.tmp = this;
+            console.log(this.time);
+            this.time += 10;
+            this.timeoutid = setTimeout('tmp.start();',500);
+            document.getElementById('timeobj').innerHTML = this.time;
+        }
+        this.stop = function () {
+            clearTimeout(this.timeoutid);
+        }
+    })();
+    document.getElementById("start").setAttribute('onclick',"obj.start();");
+    document.getElementById("stop").setAttribute('onclick',"obj.stop();");
+</script>

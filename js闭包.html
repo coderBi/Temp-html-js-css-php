@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>写一个js闭包</title>
+</head>
+<body>
+	<script>
+		func = (function outer(){
+			var i = 0;
+			$inner = function(){
+				alert(i++);
+			}
+			return $inner;
+		})();
+	</script>
+	<button onclick='func()'>click me</button>
+</body>
+</html>

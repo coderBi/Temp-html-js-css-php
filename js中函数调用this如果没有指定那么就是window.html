@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js中函数调用默认this为window</title>
+</head>
+<body>
+	<input type='button' id='bt' value='click me'/>
+</body>
+</html>
+<script>
+var bt = document.getElementById('bt').onclick = function(){
+	//这里存在事件源  所以this指代的是dom里面的div对象
+	console.log(this);
+};
+(function(){
+	//这里的this指代的window
+	console.log(this);
+})();
+</script>

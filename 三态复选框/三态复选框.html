@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三态复选框</title>
+	<script src='./jquery-1.12.3.js'></script>
+</head>
+<body>
+	<form action='#' method='get'>
+	<input type='checkbox' value='1' name='name'/>	
+	<input type='checkbox' value='2' name='name'/>
+	<input type='checkbox' value='3' name='name '/>
+	<input type='submit' value='提交'/>
+	</form>
+</body>
+</html>
+<script>
+	//注意：indeterminate属性 只能在js里面进行设置  会将复选框的状态改成了灰色的选择状态  indeterminate属性不会对应的checkbox在提交的时候不会进行提交  还是只有checked状态的属性才会提交值
+	$('input').each(function(){
+		this.indeterminate = true;
+	});
+</script>

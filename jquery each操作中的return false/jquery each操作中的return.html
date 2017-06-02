@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery each操作中的return</title>
+	<style>
+		div{
+			background-color:red;
+			height:100px;
+			width:100px;
+		}
+	</style>
+	<script src='./jquery-1.12.3.js'></script>
+</head>
+<body>
+	<div id="1"></div><br>
+	<div id="2"></div><br>
+	<div id="3"></div><br>
+	<div id="4"></div><br>
+	<div id="5"></div><br>
+	<input type='button' onclick='changeBackground();'>
+</body>
+</html>
+<script>
+	$('div').mousedown(function(){
+		//将紧接着的三个div的颜色进行修改
+		$(this).nextAll('div').each(function(index,element){
+			//each相当于对所有的选择对象进行遍历  如果在each中进行了一个return false 那么会结束这个循环
+			if(index >= 3)
+				return false;
+			$(this).css('background-color','green');
+		});
+	});
+	$('div').mouseup(function(){
+		//恢复紧接的三个div的颜色
+		$(this).nextAll('div').each(function(index,element){
+			//each相当于对所有的选择对象进行遍历  如果在each中进行了一个return false 那么会结束这个循环
+			if(index >= 3)
+				return false;
+			$(this).css('background-color','');
+		});
+	});
+</script>

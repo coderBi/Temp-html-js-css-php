@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>关于mousedown触发后失去鼠标焦点导致mouseup不触发的分析</title>
+	<style>
+		div{
+			background-color:red;
+			height:100px;
+			width:100px;
+		}
+	</style>
+	<script src='./jquery-1.12.3.js'></script>
+</head>
+<body>
+	<div></div><br>
+</body>
+</html>
+<script>
+	//现象分析：在mousedown进行了alert操作 alert是阻塞的，导致被点击的div失去了光标  这样就不会再进一步触发mouseup事件了
+	//click事件是在mousedown与mouseup分别触发之后执行  所以click事件也是不会触发的
+	$('div').mousedown(function(){
+		alert('down');
+	}).mouseup(function(){
+		alert('up');
+	}).click(function(){
+		alert('click');
+	});
+</script>

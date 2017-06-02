@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试display与visibility效果</title>
+	<style>
+		#v{
+			visibility:hidden;
+			background-color:red;
+		}
+		#d{
+			display:none;
+			background-color:green;
+		}
+		div{
+			height:100px;
+			width:100px;
+			background-color:blue;
+			text-align:center;
+			vertical-align:middle;
+			line-height:100px;
+		}
+	</style>
+</head>
+<body>
+	<!--通过设置visibilty:hidden虽然隐藏了显示但是这个div还是占用页面的空间，只是人眼不能直接看到而已-->
+	<div id="v"></div>
+	<div>隔层1</div>
+	<!--通过设置display:none 表示不显示这个div 是真正的不显示，也不会占用任何的页面空间 这个div的下面的div会移动上来到他原来的空间-->
+	<div id="d"></div>
+	<div>隔层2</div>
+</body>
+</html>

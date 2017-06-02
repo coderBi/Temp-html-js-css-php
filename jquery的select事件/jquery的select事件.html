@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery的select事件</title>
+	<script src='./jquery-1.12.3.js'></script>
+</head>
+<body>
+	<select>
+		<option value='1'>文本1</option>
+		<option value='2'>文本2</option>
+		<option value='3'>文本3</option>
+	</select><br>
+	<input type='button' onclick='selectTheSecond();' value='选中第二个option'><br>
+	<input type='button' onclick="$('select').val(3).change();" value='设置值为3的option被选中'><br>
+	<!--这里用到了一个contains选择器  进行包含在指定内容的筛选  注意这里的selected是特性，应该用prop函数而不是用attr函数-->
+	<input type='button' onclick="$('option:contains(文本2)').prop('selected',true);$('select').change();" value='设置文本的值为‘文本2’的被选中'><br>
+</body>
+</html>
+<script>
+	//当select的值改变时执行 注意这种改变是页面点击事件引起的改变，如果是代码设置的值改变不会自动触发这段代码的执行，例如上面的两个按钮点击代码进行的设置如果要执行这段代码输出需要进行手动的调用
+	$('select').change(function(){
+		console.log('select的值发生了修改.........');
+		//jquery val()方法获取值
+		console.log('select value chhanged, the value of the select is ' + $(this).val());
+		//获取选中的option的文本
+		console.log('the text of the option selected is ' + $(this).find('option:selected').text());
+		//获取选中的索引值
+		console.log('the index of the option selected is ' + $(this).get(0).selectedIndex);
+		//获取最大的索引值  注意高版本的jquery里面index是特性
+		console.log('the max index of this select is ' + $(this).find('option:last').prop('index'));
+		console.log('------------------------------');
+	});
+
+	function selectTheSecond(){
+		//选取第二个也就是index为 1 的option为选中的状态
+		$('select').get(0).selectedIndex = 1;
+		//显示改变后的信息 这里需要手动的调用
+		$('select').change();
+	}
+</script>

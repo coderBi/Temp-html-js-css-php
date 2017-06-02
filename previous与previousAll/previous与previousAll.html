@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>previous与previousAll</title>
+	<style>
+		div{
+			width:100px;
+			height:100px;
+		}
+		#d1{
+			background-color:red;
+		}
+		#d2{
+			background-color:blue;
+		}
+		#d3{
+			background-color:green;
+		}
+	</style>
+	<script src='./jquery-1.12.3.js'></script>
+</head>
+<body>
+	<div id='d1'></div>
+	<div id='d2'></div>
+	<div id='d3'></div>
+	<input type='button' onmousedown='changePrevious();' onmouseup='reset();' value='改变div3前一个的颜色'/>
+	<input type='button' onmousedown='changePreviousAll();' onmouseup='reset();' value='改变div3前面所有的div的颜色'/>
+</body>
+</html>
+<script>
+	//事件的调用者是window 如果要获取事件源在ff中可以用event传入 在ie中可以通过 window.event 获取
+	function changePrevious(){
+		$('#d3').prev('div').css('background-color','teal');
+	}
+	function changePreviousAll(event){
+		$('#d3').prevAll('div').css('background-color','teal');
+	}
+	function reset(){
+		$('div').css('background-color','');
+	}
+</script>

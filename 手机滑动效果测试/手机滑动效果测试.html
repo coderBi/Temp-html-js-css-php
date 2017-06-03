@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手机滑动效果测试</title>
+	<script src='./jquery-1.12.3.js'></script>
+	<!--这是一个基于jquery的移动端屏幕滑动的js库-->
+	<script src='./jquery.touchSwipe.js'></script>
+	 <script>
+		$(function()
+		 {
+		//swipe
+		 的dome
+		$("#test").swipe(
+		 {
+		swipe:function(event,
+		 direction, distance, duration, fingerCount) {
+		$(this).text("你用"+fingerCount+"个手指以"+duration+"秒的速度向"
+		 + direction + "滑动了" +distance+ "像素 " );
+		},
+		});
+		//swipeStatus的dome
+		$("#test2").swipe(
+		 {
+		swipeStatus:function(event,
+		 phase, direction, distance, duration,fingerCount) {
+		$(this).text("你用"+fingerCount+"个手指以"+duration+"秒的速度向"
+		 + direction + "滑动了" +distance+ "像素 " +"你在"+phase+"中");
+		},
+		});
+		});
+		</script>
+</head>
+<body>
+	<!--这个页面应该放到服务器上 用手机访问 进行滑动测试 建议将中文名称修改问英文会更方便-->
+	 <div id="test" style="height:200px;background:#C63;text-align:center; line-height:200px; color:#fff">swipe
+		 的dome</div>
+		<div id="test2" style="height:200px;
+		 background:#C63; margin-top:20px;text-align:center; line-height:200px; color:#fff">swipeStatus的dome</div>
+</body>
+</html>

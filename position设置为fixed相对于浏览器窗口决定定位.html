@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>position设置为fixed相对于浏览器窗口决定定位</title>
+</head>
+<body>
+	<!--position可以有四个值：static（默认）处于页面流给予的位置，static会忽略top、left等设置  
+							  relative 这个时候如果提供一个left:10px 就是在正常的页面流的给予的位置的基础上向左移动10px
+							  absolute 自绝父相 设置相对于外层的relative元素的位置
+							  fixed 相对于浏览器窗口的位置 这种设置不会随着浏览器的滚动条的滚动而发生移动 -->
+	<!--利用子绝父相 进行布局是设置一个元素从自己向外层查找找到第一个设置了relative的元素的位置-->
+	<div style='background-color:red;width:500px;height:500px;position:relative;'>
+		<div style='background-color:blue;width:400px;height:400px;'>
+			<!--可以发现由于这个元素的父元素是默认的static的  所以这个元素的定位是相对于更外层的div-->
+			<div style='background-color:green;width:100px;height:100px;position:absolute;bottom:10px;right:10px;'>
+			</div>
+		</div>
+	</div>
+	<!--position为fixed  是相对于整个浏览器窗口的  不会随着滚动条的移动而发生位置的改变-->
+	<div style='background-color:teal;width:100px;height:100px;position:fixed;bottom:100px;right:100px;'>
+	</div>
+	<div style='background-color:pink;width:1200px;height:400px;'>
+	</div>
+	<div style='background-color:black;width:1200px;height:400px;'>
+	</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js的firstChild与firstElementChild</title>
+	<style>
+		#parent{
+			height:400px;
+			width:400px;
+			background-color:teal;
+		}
+		#child{
+			height:200px;
+			width:200px;
+			background-color:red;
+		}
+	</style>
+</head>
+<body>
+	<div id='parent'>
+		before
+		<div id='child'>
+			hello world
+		</div>
+		after
+	</div>
+	<input type='button' value='使用firstChild' onclick='usefirstChild();' /><input type='button' value='使用firstElementChild' onclick='usefirstElementChild();' />
+</body>
+<script>
+	//firstChild可以获取到两个div中间的文字  包括如果文字是空白字符串(例如一个空格一个\n) 这里如果父子div中间没有文字并且书写的时候没有进行认为的空格或者换行那么得到的结果和firstElmentChild的结果是一样的 
+	function usefirstChild(){
+		var e = document.getElementById('parent').firstChild;
+		console.log(e);
+		//这里会报一个错误，因为是纯文本节点  text节点的css样式是通过包裹它的html元素来设置的  其本身并没有style属性
+		e.style.setProperty('color','gray');
+	}
+	//firstElementChild获取到的是非纯文本节点的第一个html节点元素
+	function usefirstElementChild(){
+		var e = document.getElementById('parent').firstElementChild;
+		console.log(e);
+		e.style.setProperty('color','green');
+	}
+</script>
+</html>

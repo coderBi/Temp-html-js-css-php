@@ -6,8 +6,11 @@
 	<script src="jquery-1.12.3.js"></script>
 </head>
 <body>
-	<div id='div' style="background-color:red;width:500px;height:500px;"></div>
-	<input id='get' type='button' value='获取offset'/><input id='set' type='button' value='设置offset'/>
+	<div id='wrap' style='background-color:teal;'>
+		<div id='div' style="background-color:red;width:500px;height:500px;"><div id='child' style="background-color:blue;width:200px;height:200px;"></div></div>
+		<input id='get' type='button' value='获取offset'/><input id='set' type='button' value='设置offset'/><input id='setchild' type='button' value='设置内部子div的offset'/>
+	</div>
+	<input id='setOverflow' type='button' value='设置外层包裹的div的overflow'/>
 	<script>
 	$('#get').click(function(){
 		//获取的结构中是一个只要一个left和top的属性的对象
@@ -15,10 +18,16 @@
 		alert('left:'+offset.left+"  top:"+offset.top);
 	});
 	$('#set').click(function(){
-		//获取的结构中是一个只要一个left和top的属性的对象
-		var offset = $('#div').offset();
 		//提供一个对象，只要这个对象中有left跟top属性  就可以用来设置offset
 		$('#div').offset({'left':100,"top":100})
+	});
+	$('#setchild').click(function(){
+		//这里设置的div内部的子div  可以发现offset是相对于父元素的
+		$('#child').offset({'left':700,"top":100})
+	});
+	$('#setOverflow').click(function(){
+		//隐藏溢出的子div
+		$('#wrap').css('overflow','hidden');
 	});
 	//下面的伪元素就是没有left  top的属性
 	alert($('#set:after').offset());

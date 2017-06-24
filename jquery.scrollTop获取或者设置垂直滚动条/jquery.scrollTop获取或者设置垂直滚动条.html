@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery.scrollTop获取或者设置垂直滚动条</title>
+	<style>
+		.test{
+			width:200px;
+			height:200px;
+			margin-bottom:20px;
+			background-color:red;
+		}
+	</style>
+	<script src='./jquery-1.12.3.js'></script>
+</head>
+<body>
+	<div class="test"></div>
+	<div class="test"></div>
+	<div class="test"></div>
+	<div class="test"></div>
+	<div class="test"></div>
+	<input id='set' type='button' value='设置滚动条位置' style='position:fixed;top:200px;left:500px;'>
+</body>
+<script>
+	$('#set').click(function(){
+		//获取滚动高度 注意这里的默认滚动条是document的而不是body的
+		console.log($(document).scrollTop());
+		//获取水平滚动距离
+		console.log($(document).scrollLeft());
+		//设置一个元素的滚动条的位置  这里没有水平滚动条所以第二个设置无用
+		$(document).scrollTop(200).scrollLeft(200);
+	});
+</script>
+</html>

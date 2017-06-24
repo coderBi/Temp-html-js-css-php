@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>关于css中设置了!important的覆盖</title>
+	<style>
+		#test{
+			height: 400px;
+			width: 400px;
+			/*!important的设置会导致这一条规则的优先级最高  也就是这个规则凌驾于内联样式之上*/
+			background-color: teal !important;
+		}
+	</style>
+</head>
+<body>
+	<div id='test' style='background-color:blue;'></div>
+	<input type='button' value='通过新设置内联样式并且也加上!important进行覆盖' onclick='changeBackgroundColor();' />
+</body>
+<script>
+	function changeBackgroundColor(){
+		//通过e.style.setProperty()设置样式这个方法设置内联样式  相当于jquery中的css函数
+		var e = document.getElementById('test');
+		console.log(e);
+		//注意这里如果要设置!important 第三个附加参数是不是!important 如果带了那个!会因为写错而设置不上
+		e.style.setProperty('background-color','red','important');
+	}
+</script>
+</html>

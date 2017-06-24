@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css中!important</title>
+	<style>
+		/**note: 对于ie  版本要在ie6以上才支持!important**/
+		/*!important的作用是将这个css设置项的优先级放大最大，所以下面的第一个p选择器不会被后面的重新设置覆盖*/
+		p{color:green !important;}
+		p{color:red;}
+	</style>
+	<script src='./jquery-1.12.3.js'></script>
+</head>
+<body>
+	<p>测试文字</p>
+	<!--通过下面的测试,可以发现 !important的使用可以覆盖到内嵌的样式设置  所以这里的p的文字颜色并不能设置为blue-->
+	<p style="color:blue;">测试文字</p>
+	<button onclick='test()'>jquery改变css</button>
+</body>
+<script>
+	//////由于jquery（js）代码里面是通过修改内嵌的css样式来进行元素的外观修改的  所以这里虽然修改了内嵌的css但是也不能改变显示的字体颜色  从这个角度上看 !important的优先级别有些过高了
+	function test(){
+		console.log($('p:eq(1)'));
+		$('p:eq(1)').css('color','pink');
+	}
+</script>
+</html>

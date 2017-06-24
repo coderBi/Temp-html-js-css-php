@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>将页面中一个指定的元素滚动到可是窗口的最上面</title>
+	<style>
+		.test{
+			height:200px;
+			width:200px;
+			background-color:red;
+			margin-bottom:20px;
+		}
+	</style>
+	<script src='./jquery-1.12.3.js'></script>
+</head>
+<body>
+	<div class="test"></div>
+	<div class="test"></div>
+	<div class="test"></div>
+	<div class="test"></div>
+	<div class="test"></div>
+	<input type='button' value='将第三个div的上边界移动到可是窗口的最上面' id='scroll'>
+</body>
+<script>
+	$('#scroll').click(function(){
+		//getBoundingClientRect函数获取到的是一个元素的边框相对于当前可视窗口的左上角的位置：其中包含的属性有width height这个窗口的宽高、left right左边右边相对于浏览器左边界的距离  top bottom上边下边相对于浏览器上边的距离。 如果浏览器的滚动条发生滚动，这个rect因为始终是相对于可以看到的浏览器窗口的部分的位置(数值可能是负数)，所以如果要获取一个元素相对于真正的浏览器的顶端的位置可以使用 (rect.top + window.)
+		var rect = $('.test:eq(2)')[0].getBoundingClientRect();
+		console.log(rect);
+		//使用$(window).scrollTop() 或者使用 $(document).scrollTop() 获取到整个窗口的滚动条的位置  其实好像$(window).scrollTop()的兼容性更好一些
+		var scrolltop = $(window).scrollTop();
+		console.log(scrolltop);
+		//所以通过上面两个部分相加  可以获得一个元素相对于一个页面最上面的距离
+		var top = rect.top + scrolltop;
+		//将指定元素的上边界移动滚动到窗口顶端
+		$(window).scrollTop(top);
+	});
+</script>
+</html>

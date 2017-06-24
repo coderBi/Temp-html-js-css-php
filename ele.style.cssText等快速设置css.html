@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ele.style.cssText等快速设置css</title>
+	<style>
+		#test{
+			height: 400px !important;
+			width: 400px;
+			background-color: teal;
+		}
+	</style>
+</head>
+<body>
+	<div id='test'></div>
+	<input type="button" value="直接使用style.cssText" onclick="cssText();">
+	<input type="button" value="使用style.setProperty" onclick="setProperty();">
+	<input type="button" value="使用slyle.removeProperty" onclick="removeProperty();">
+	<input type="button" value="使用设置内联的!important属性进行!important覆盖" onclick="setImportant();">
+</body>
+<script>
+	function cssText(){
+		//e.style.cssText 是一个元素的内联样式字符串
+		var e = document.getElementById('test');
+		console.log(e.style.cssText);
+		//快速清除一个元素的所有已经设置的内联样式
+		e.style.cssText = '';
+		//设置一个属性
+		e.style.cssText = 'background-color:red;'
+	}
+	function setProperty(){
+		var e = document.getElementById('test');
+		//注意，设置的值中不能是700px; 因为;非法导致设置不上去  setProperty用来设置内联样式相当于jquery的css函数
+		e.style.setProperty('width','700px');
+	}
+	function removeProperty(){
+		//移除一个内联样式中的css属性  相当于jquery中css('width','')
+		document.getElementById('test').style.removeProperty('width');
+	}
+	function setImportant(){
+		//通过内联样式加上 !important 对原有的 !important属性进行覆盖 如果没有加上important由于原来的样式设置凌驾于所有的css之上导致不能覆盖
+		document.getElementById('test').style.setProperty('height','500px','important');  //note：这个important前面没有 !
+	}
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原生js的getElementsByClassName</title>
+	<style>
+		.test{
+			margin: 0px 0px 20px 0px;
+			height:100px;
+			width:100px;
+			background-color:red;
+		}
+	</style>
+</head>
+<body>
+	<div class="test"></div>
+	<div class="test"></div>
+	<div class="test"></div>
+	<div class="test"></div>
+	<div class="test   another"></div>
+	<input type='button' value='修改后三个div的颜色' onclick='changeLastThree();' />
+	<input type='button' value='修改最后一个div的颜色' onclick='changeLast();' />
+</body>
+<script>
+	function changeLastThree(){
+		//getElementsByClassName方法是原生的js方法  网络上说的是其效率要优于jquery的类选择器  这个函数返回的是一个dom对象数组（不想jquery返回一个对象）
+		var divs = document.getElementsByClassName('test');
+		//divs是一个数组  中间放了找到的5个div的dom对象
+		console.log(divs);
+		//修改后三个的背景色
+		for(var i = 2; i < divs.length; i++){
+			divs[i].style.setProperty('background-color','teal');
+		}
+	}
+	function changeLast(){
+		//多个class之间  用空格隔开
+		var divs = document.getElementsByClassName('test another');
+		//divs是一个数组  中间放了找到的5个div的dom对象
+		console.log(divs);
+		divs[0].style.setProperty('background-color','green');
+	}
+</script>
+</html>

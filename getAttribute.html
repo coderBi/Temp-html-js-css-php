@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>getAttribute</title>
+	<style>
+		div{
+			height:100px;
+			width:100px;
+			background-color:teal;
+		}
+	</style>
+</head>
+<body>
+	<div attr='hell world'></div><br>
+	<input type='button' onclick='getAttr();' value='点我获取div的属性'/>
+</body>
+</html>
+<script>
+	function getAttr(){
+		var div = document.getElementsByTagName('div')[0];
+		var toReturn = "attr:";
+		//getAttribute函数用于获取一个元素的某个名称的属性值，如果没有这个属性，那么会返回nulls
+		toReturn += div.getAttribute('attr') + "<br>attrNotExists:";
+		toReturn += div.getAttribute('attrNotExists');
+		alert(toReturn);
+	}
+</script>

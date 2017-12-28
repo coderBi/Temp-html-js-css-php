@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>时钟</title>
+</head>
+<body>
+	<div id='time' style='text-align:center;'></div>
+	<script>
+		var time = document.getElementById('time');
+		setInterval(function(){
+			var date = new Date();
+			time.innerHTML = "" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); 
+		}, 1000);
+	</script>
+</body>
+</html>
